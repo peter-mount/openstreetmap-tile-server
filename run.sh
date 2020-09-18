@@ -5,6 +5,10 @@ set -x
 function createPostgresConfig() {
   cp /etc/postgresql/12/main/postgresql.custom.conf.tmpl /etc/postgresql/12/main/conf.d/postgresql.custom.conf
   sudo -u postgres echo "autovacuum = $AUTOVACUUM" >> /etc/postgresql/12/main/conf.d/postgresql.custom.conf
+  # area51: from https://blog.rustprooflabs.com/2020/01/postgis-osm-load-2020
+  # Set max_parallel_workers_per_gather = (# cores / 2) -1
+  sudo -u postgres echo "max_parallel_workers_per_gather = ${MAX_WORKERS_PER_GATHERER:-$((($(grep -c processor /proc/cpuinfo)/2)-1))}" >> /etc/postgresql/12/main/conf.d/postgresql.custom.conf
+
   cat /etc/postgresql/12/main/conf.d/postgresql.custom.conf
 }
 
