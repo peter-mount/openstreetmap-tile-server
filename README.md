@@ -1,5 +1,11 @@
 # openstreetmap-tile-server
 
+This is a fork of [Overv/openstreetmap-tile-server](https://github.com/Overv/openstreetmap-tile-server) with some optimisations, mainly for performance when dealing with the entire planet.
+
+Some of the [optimisations](https://blog.rustprooflabs.com/2020/01/postgis-osm-load-2020) deal with PostgreSQL 12 (turning off jit & setting max_parallel_workers_per_gather)
+
+## Original README
+
 [![Build Status](https://travis-ci.org/Overv/openstreetmap-tile-server.svg?branch=master)](https://travis-ci.org/Overv/openstreetmap-tile-server) [![](https://images.microbadger.com/badges/image/overv/openstreetmap-tile-server.svg)](https://microbadger.com/images/overv/openstreetmap-tile-server "openstreetmap-tile-server")
 
 This container allows you to easily set up an OpenStreetMap PNG tile server given a `.osm.pbf` file. It is based on the [latest Ubuntu 18.04 LTS guide](https://switch2osm.org/manually-building-a-tile-server-18-04-lts/) from [switch2osm.org](https://switch2osm.org/) and therefore uses the default OpenStreetMap style.
